@@ -1,10 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@200..800&display=swap');
+
 body {
+    font-family: 'Atkinson Hyperlegible Next', Arial;
+    text-align: center;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
     height: 100vh;
-    margin: 0;
+    background-color: lightgreen;
 }
 
 #boxesWrapper {
@@ -18,11 +21,39 @@ body {
     gap: .5rem;
 }
 
+input, select, option {
+    font-family: 'Atkinson Hyperlegible Next', Arial;
+    border: 2px solid;
+    padding: 1rem;
+    border-radius: .5rem;
+    outline: none;
+    transition: .3s;
+    box-shadow: .2rem .2rem 0;
+  }
+  
+input:hover, input:focus, select:hover, select:focus {
+    transform: translate(-2px, -2px);
+    box-shadow: .3rem .3rem 0;
+}
+
+input {
+    width: 10rem;
+}
+
+select {
+    width: 7rem;
+}
+
+select, option {
+    background-color:cadetblue;
+}
+
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 input[type=number] {
-  appearance: textfield;
+    appearance: textfield;
 }

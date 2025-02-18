@@ -7,7 +7,9 @@ function convert() {
     const fromUnit = document.querySelector('#fromUnit').value;
     const toUnit = document.querySelector('#toUnit').value;
 
-    if (fromUnit == 'Dec' && toUnit == 'Bin') {
+    if (fromUnit == toUnit) {
+        converted.value = toConvert.value;
+    } else if (fromUnit == 'Dec' && toUnit == 'Bin') {
         decToBin();
     } else if (fromUnit == 'Bin' && toUnit == 'Dec') {
         binToDec();
@@ -20,7 +22,7 @@ function decToBin() {
     let digits = [];
     let toConvertValue = toConvert.value;
     let convertedValue = "";
-
+    
     for (let i = 0; toConvertValue >= 1; i++) {
         digits[i] = toConvertValue % 2;
         toConvertValue = Math.floor(toConvertValue / 2);
