@@ -10,60 +10,70 @@ function convert() {
     if (fromUnit == toUnit) {
         converted.value = toConvert.value;
     } else if (fromUnit == 'Dec' && toUnit == 'Bin') {
-        decToBin();
+        converted.value = decToBin(toConvert.value);
     } else if (fromUnit == 'Bin' && toUnit == 'Dec') {
-        binToDec();
+        converted.value = binToDec(toConvert.value);
     } else if (fromUnit == 'Dec' && toUnit == 'Hex') {
-        decToHex();
+        converted.value = decToHex(toConvert.value);
+    } else if (fromUnit == 'Hex' && toUnit == 'Dec') {
+        converted.value = hexToDec(toConvert.value);
+    } else if (fromUnit == 'Hex' && toUnit == 'Bin') {
+        converted.value = decToBin(hexToDec(toConvert.value));
+    } else if (fromUnit == 'Bin' && toUnit == 'Hex') {
+        converted.value = decToHex(binToDec(toConvert.value));
     }
 }
 
-function decToBin() {
+function decToBin(valueToConvert) {
     let digits = [];
-    let toConvertValue = toConvert.value;
     let convertedValue = "";
     
-    for (let i = 0; toConvertValue >= 1; i++) {
-        digits[i] = toConvertValue % 2;
-        toConvertValue = Math.floor(toConvertValue / 2);
+    for (let i = 0; valueToConvert >= 1; i++) {
+        digits[i] = valueToConvert % 2;
+        valueToConvert = Math.floor(valueToConvert / 2);
     }
 
     for (let i = digits.length - 1; i >= 0; i--) {
         convertedValue += digits[i];
     }
 
-    converted.value = convertedValue;
+    return convertedValue;
 }
 
-function binToDec() {
-    let toConvertValue = toConvert.value;
+function binToDec(valueToConvert) {
     let convertedValue = 0;
 
-    for (let i = toConvertValue.length - 1; i >= 0; i--) {
-        convertedValue += toConvertValue[i] * (2 ** i);
+    for (let i = valueToConvert.length - 1, j = 0; i >= 0; i--, j++) {
+        convertedValue += valueToConvert[i] * (2 ** j);
     }
 
-    converted.value = convertedValue;
+    return convertedValue;
 }
 
-function decToHex() {
+function decToHex(valueToConvert) {
     let digits = [];
-    let toConvertValue = toConvert.value;
     let convertedValue = "";
     const hexChars = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'];
 
-    for (let i = 0; toConvertValue >= 1; i++) {
-        digits[i] = toConvertValue % 16;
-        toConvertValue = Math.floor(toConvertValue / 16);
+    for (let i = 0; valueToConvert >= 1; i++) {
+        digits[i] = valueToConvert % 16;
+        valueToConvert = Math.floor(valueToConvert / 16);
     }
 
     for (let i = digits.length - 1; i >= 0; i--) {
         convertedValue += hexChars[digits[i]];
     }
 
-    converted.value = convertedValue;
+    return convertedValue;
 }
 
-function hexToDec() {
-    // to do
+function hexToDec(valueToConvert) {
+    let convertedValue = 0;
+    const hexChars = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+
+    for (let i = valueToConvert.length - 1, j = 0; i >= 0; i--, j++) {
+        convertedValue += hexChars.indexOf(valueToConvert[i].toUpperCase()) * (16 ** j);
+    }
+
+    return convertedValue;
 }

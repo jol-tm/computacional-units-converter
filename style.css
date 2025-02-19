@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Atkinson Hyperlegible Next', Arial;
+    font-size: 1.2rem;
     text-align: center;
     display: flex;
     align-items: center;
@@ -23,6 +24,7 @@ body {
 
 input, select, option {
     font-family: 'Atkinson Hyperlegible Next', Arial;
+    font-size: 1.2rem;
     border: 2px solid;
     padding: 1rem;
     border-radius: .5rem;
@@ -36,12 +38,9 @@ input:hover, input:focus, select:hover, select:focus {
     box-shadow: .3rem .3rem 0;
 }
 
-input {
+input, select {
     width: 10rem;
-}
-
-select {
-    width: 7rem;
+    text-overflow: ellipsis;
 }
 
 select, option {
